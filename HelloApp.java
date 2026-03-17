@@ -1,28 +1,33 @@
+/**
+ * HelloApp.java
+ * UC5: Display "Hello" with multiple command-line arguments
+ * If names are provided → Hello, name1, name2, ...
+ * If no names → Hello, World!
+ */
+
 public class HelloApp {
+
     public static void main(String[] args) {
 
-        String name;
-
-        // Check if arguments are provided
+        // If no arguments → default message
         if (args.length == 0) {
-            name = "Guest"; // Default value
-        } else {
-            // Build string from multiple arguments
-            StringBuilder nameBuilder = new StringBuilder();
-
-            for (int i = 0; i < args.length; i++) {
-                nameBuilder.append(args[i]);
-
-                // Add comma between names
-                if (i < args.length - 1) {
-                    nameBuilder.append(", ");
-                }
-            }
-
-            name = nameBuilder.toString();
+            System.out.println("Hello, World!");
+            return;
         }
 
-        // Output
-        System.out.println("Hello, " + name + "!");
+        // Build names using StringBuilder
+        StringBuilder nameBuilder = new StringBuilder();
+        boolean first = true;
+
+        for (String name : args) {
+            if (!first) {
+                nameBuilder.append(", ");
+            }
+            nameBuilder.append(name);
+            first = false;
+        }
+
+        // Print final output
+        System.out.println("Hello, " + nameBuilder.toString() + "!");
     }
 }
