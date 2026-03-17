@@ -1,34 +1,28 @@
-/**
- * HelloApp.java
- * A simple Java application that greets the user by name if provided,
- * or defaults to "World" if no name is given.
- *
- * UC1: Display "Hello World"
- * UC2: Display User Name
- * UC3: Provide Default Value
- *
- * Usage: java HelloApp [name]
- * If a name is provided → "Hello, [Name]!"
- * If no name → "Hello, World!"
- *
- * @author Mohan
- * @version 3.0
- * @since UC1
- */
-
 public class HelloApp {
-
     public static void main(String[] args) {
 
-        // Default value
-        String name = "World";
+        String name;
 
-        // Check if argument is provided
-        if (args.length > 0) {
-            name = args[0];
+        // Check if arguments are provided
+        if (args.length == 0) {
+            name = "Guest"; // Default value
+        } else {
+            // Build string from multiple arguments
+            StringBuilder nameBuilder = new StringBuilder();
+
+            for (int i = 0; i < args.length; i++) {
+                nameBuilder.append(args[i]);
+
+                // Add comma between names
+                if (i < args.length - 1) {
+                    nameBuilder.append(", ");
+                }
+            }
+
+            name = nameBuilder.toString();
         }
 
-        // Print greeting
+        // Output
         System.out.println("Hello, " + name + "!");
     }
 }
